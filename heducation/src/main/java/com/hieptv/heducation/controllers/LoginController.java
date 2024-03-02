@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author trhiep
  */
 @Controller
-public class HomeController {
-    @RequestMapping("/")
-    public String home(Model model) {
-        model.addAttribute("pageTitle", "HEducation");
-        return "guest/index";
+public class LoginController {
+    @RequestMapping("/dang-nhap")
+    public String login(Model model) {
+        model.addAttribute("pageTitle", "Đăng nhập");
+        return "guest/login";
     }
 }
