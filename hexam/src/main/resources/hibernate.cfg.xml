@@ -9,7 +9,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3308/hexam</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    	<property name="hibernate.hbm2ddl.auto">create-drop</property>
+    	<property name="hibernate.hbm2ddl.auto">update</property>
     	<property name="show_sql">true</property>
     	
     	<!-- Mapping -->
@@ -24,7 +24,7 @@
     	<mapping class="com.hieptv.hexam.models.ExamResult"/>
     	<mapping class="com.hieptv.hexam.models.ExamSettings"/>
     	<mapping class="com.hieptv.hexam.models.Person"/>
+    	<mapping class="com.hieptv.hexam.models.UserRole"/>
     	<mapping class="com.hieptv.hexam.models.StudentAnswer"/>
-    	<mapping class="com.hieptv.hexam.models.UserPassword"/>
     </session-factory>
 </hibernate-configuration>

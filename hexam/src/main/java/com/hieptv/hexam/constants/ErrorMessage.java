@@ -27,5 +27,6 @@ public interface ErrorMessage {
     interface Person {
         String NOT_EMPTY_USERNAME = "Tên người dùng không được bỏ trống!";
         String NOT_EMPTY_EMAIL = "Địa chỉ email không được bỏ trống!";
+        String NOT_EMPTY_PASSWORD = "Mật khẩu không được bỏ trống!";
     }
 }

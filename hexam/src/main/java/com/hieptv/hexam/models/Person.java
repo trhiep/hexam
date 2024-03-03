@@ -24,12 +24,17 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer personId;
 
-    @Column(name = "user_type")
-    private String userType;
+    @OneToOne
+    @JoinColumn(name = "role_code", referencedColumnName = "role_code")
+    private UserRole userRole;
 
     @NotEmpty(message = ErrorMessage.Person.NOT_EMPTY_USERNAME)
     @Column(name = "user_name")
     private String userName;
+
+    @NotEmpty(message = ErrorMessage.Person.NOT_EMPTY_PASSWORD)
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "full_name")
     private String fullName;
@@ -37,5 +42,13 @@ public class Person {
     @NotEmpty(message = ErrorMessage.Person.NOT_EMPTY_EMAIL)
     @Column(name = "email_address")
     private String emailAddress;
+
+    @Column(name = "enable")
+    private Boolean enable;
+
+    @PrePersist
+    public void prePersist() {
+        enable = true;
+    }
 
 }
