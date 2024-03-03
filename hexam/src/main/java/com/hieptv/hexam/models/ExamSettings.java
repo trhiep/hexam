@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "exam_settings")
 public class ExamSettings {
-
 
     @Id
     @OneToOne
