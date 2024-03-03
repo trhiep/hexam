@@ -1,5 +1,6 @@
 package com.hieptv.hexam.models;
 
+import com.hieptv.hexam.constants.ErrorMessage;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -28,11 +29,10 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer answerId;
 
-    @NotEmpty
+    @NotEmpty(message = ErrorMessage.Answer.NOT_EMPTY_TITLE)
     @Column(name = "title")
     private String title;
 
-    @NotEmpty
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate;
 

@@ -32,7 +32,6 @@ public class ExamEnrollment {
     @JoinColumn(name = "exam_id", referencedColumnName = "exam_id")
     private Exam exam;
 
-    @NotEmpty
     @Column(name = "enroll_time")
     private LocalDateTime enrollTime;
 

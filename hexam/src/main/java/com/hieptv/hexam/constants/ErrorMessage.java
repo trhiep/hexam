@@ -21,7 +21,7 @@ public interface ErrorMessage {
         String NOT_EMPTY_EXAM_NAME = "Tên bài thi không được bỏ trống!";
         String NOT_EMPTY_PUBLICATION = "Chế độ hiển thị của bài thi không được bỏ trống!";
         String NOT_EMPTY_DURATION = "Thời gian làm bài không được bỏ trống!";
-        String NOT_EMPTY_ATTEMPTS = "Số lần có thể làm bài không được bỏ trống";
+        String NOT_EMPTY_PASS_SCORE = "Điểm đạt không được bỏ trống!";
     }
 
     interface Person {

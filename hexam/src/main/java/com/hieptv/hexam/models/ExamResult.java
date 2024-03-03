@@ -24,11 +24,9 @@ public class ExamResult {
     @JoinColumn(name = "exam_enrollment_id", referencedColumnName = "enrollment_id")
     private ExamEnrollment examEnrollment;
 
-    @NotEmpty
     @Column(name = "score")
     private Double score;
 
-    @NotEmpty
     @Column(name = "submitted_date")
     private LocalDateTime submittedDate;
 

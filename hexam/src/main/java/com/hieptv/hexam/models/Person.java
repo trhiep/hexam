@@ -24,7 +24,6 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer personId;
 
-    @NotEmpty
     @Column(name = "user_type")
     private String userType;
 
@@ -35,7 +34,7 @@ public class Person {
     @Column(name = "full_name")
     private String fullName;
 
-    @NotEmpty
+    @NotEmpty(message = ErrorMessage.Person.NOT_EMPTY_EMAIL)
     @Column(name = "email_address")
     private String emailAddress;
 

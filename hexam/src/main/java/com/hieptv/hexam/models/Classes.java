@@ -1,5 +1,6 @@
 package com.hieptv.hexam.models;
 
+import com.hieptv.hexam.constants.ErrorMessage;
 import com.hieptv.hexam.utils.generator.CodeGenerator;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -27,20 +28,16 @@ public class Classes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer classId;
 
-    @NotEmpty
+    @NotEmpty(message = ErrorMessage.Classes.NOT_EMPTY_CLASS_NAME)
     @Column(name = "class_name")
     private String className;
 
-    @NotEmpty
-    @UniqueElements
     @Column(name = "join_code")
     private String joinCode;
 
-    @NotEmpty
     @Column(name = "active")
     private Boolean active;
 
-    @NotEmpty
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate;
 

@@ -28,7 +28,6 @@ public class Exam {
     @JoinColumn(name = "created_by", referencedColumnName = "person_id")
     private Person person;
 
-    @NotEmpty
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 

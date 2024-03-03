@@ -13,7 +13,6 @@ public class LoginController {
     @RequestMapping("/dang-nhap")
     public String login(Model model) {
         model.addAttribute("pageTitle", "Đăng nhập");
-        model.addAttribute("testMsg", ErrorMessage.Person.NOT_EMPTY_USERNAME);
         return "guest/login";
     }
 }

@@ -29,18 +29,15 @@ public class ClassEnrollment {
     @JoinColumn(name = "class_id", referencedColumnName = "class_id")
     private Classes classes;
 
-    @NotEmpty
     @Column(name = "enrolled_date")
     private LocalDateTime enrolledDate;
 
-    @NotEmpty
     @Column(name = "cancelled")
     private Boolean cancelled;
 
     @Column(name = "cancel_reason")
     private String cancelReason;
 
-    @NotEmpty
     @Column(name = "left_class")
     private Boolean leftClass;
 
@@ -49,6 +46,7 @@ public class ClassEnrollment {
 
     @PrePersist
     public void prePersist() {
+        leftClass = true;
         enrolledDate = LocalDateTime.now();
     }
 }

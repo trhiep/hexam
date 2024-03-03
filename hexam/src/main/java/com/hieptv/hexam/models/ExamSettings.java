@@ -1,5 +1,6 @@
 package com.hieptv.hexam.models;
 
+import com.hieptv.hexam.constants.ErrorMessage;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class ExamSettings {
     @JoinColumn(name = "exam_id", referencedColumnName = "exam_id")
     private Exam exam;
 
-    @NotEmpty
+    @NotEmpty(message = ErrorMessage.ExamSettings.NOT_EMPTY_EXAM_NAME)
     @Column(name = "exam_name")
     private String examName;
 
@@ -35,7 +36,7 @@ public class ExamSettings {
     @Column(name = "image_link")
     private String imageLink;
 
-    @NotEmpty
+    @NotEmpty(message = ErrorMessage.ExamSettings.NOT_EMPTY_PUBLICATION)
     @Column(name = "publication")
     private Integer publication;
 
@@ -45,14 +46,14 @@ public class ExamSettings {
     @Column(name = "end_date")
     private LocalDateTime endDate;
 
-    @NotEmpty
+    @NotEmpty(message = ErrorMessage.ExamSettings.NOT_EMPTY_DURATION)
     @Column(name = "duration")
     private Integer duration;
 
     @Column(name = "attempts")
     private Integer attempts;
 
-    @NotEmpty
+    @NotEmpty(message = ErrorMessage.ExamSettings.NOT_EMPTY_PASS_SCORE)
     @Column(name = "pass_score")
     private Double passScore;
 
