@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class ClassTeacher {
 
     @Id
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "class_id", referencedColumnName = "class_id")
     private Classes classes;
 

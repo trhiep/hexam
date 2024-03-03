@@ -24,7 +24,7 @@ public class Exam {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer examId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "created_by", referencedColumnName = "person_id")
     private Person person;
 
@@ -32,7 +32,17 @@ public class Exam {
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 
-    @Column(name = "modified_date")
-    private LocalDateTime modifiedDate;
+    @Column(name = "last_modified_date")
+    private LocalDateTime lastModifiedDate;
+
+    @PrePersist
+    public void prePersist() {
+        createdDate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        lastModifiedDate = LocalDateTime.now();
+    }
 
 }

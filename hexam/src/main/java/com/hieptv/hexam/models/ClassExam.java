@@ -18,12 +18,12 @@ import lombok.NoArgsConstructor;
 public class ClassExam {
 
     @Id
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "class_id", referencedColumnName = "class_id")
     private Classes classes;
 
     @Id
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "exam_id", referencedColumnName = "exam_id")
     private Exam exam;
 }

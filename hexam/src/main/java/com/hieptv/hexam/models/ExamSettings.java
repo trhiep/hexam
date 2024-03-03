@@ -56,6 +56,16 @@ public class ExamSettings {
     @Column(name = "pass_score")
     private Double passScore;
 
-    @Column(name = "modified_date")
-    private LocalDateTime modifiedDate;
+    @Column(name = "last_modified_date")
+    private LocalDateTime lastModifiedDate;
+
+    @PrePersist
+    public void prePersist() {
+        lastModifiedDate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        lastModifiedDate = LocalDateTime.now();
+    }
 }

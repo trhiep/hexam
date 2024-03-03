@@ -20,12 +20,12 @@ import java.time.LocalDateTime;
 public class ClassEnrollment {
 
     @Id
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "person_id")
     private Person person;
 
     @Id
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "class_id", referencedColumnName = "class_id")
     private Classes classes;
 
@@ -46,4 +46,9 @@ public class ClassEnrollment {
 
     @Column(name = "left_date")
     private LocalDateTime leftDate;
+
+    @PrePersist
+    public void prePersist() {
+        enrolledDate = LocalDateTime.now();
+    }
 }

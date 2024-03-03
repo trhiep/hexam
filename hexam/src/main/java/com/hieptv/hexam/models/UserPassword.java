@@ -1,5 +1,6 @@
 package com.hieptv.hexam.models;
 
+import com.hieptv.hexam.utils.generator.SaltPasswordGenerator;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -32,7 +33,18 @@ public class UserPassword {
     @NotEmpty
     private String pwdSalt;
 
-    @Column(name = "modified_date")
-    private LocalDateTime modifiedDate;
+    @Column(name = "last_modified_date")
+    private LocalDateTime lastModifiedDate;
+
+    @PrePersist
+    public void prePersist() {
+        pwdSalt = SaltPasswordGenerator.getSalt();
+        lastModifiedDate = LocalDateTime.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
+        pwdSalt = SaltPasswordGenerator.getSalt();
+        lastModifiedDate = LocalDateTime.now();
+    }
 
 }

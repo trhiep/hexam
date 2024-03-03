@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Answer {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private ExamQuestion examQuestion;
 
@@ -33,12 +33,13 @@ public class Answer {
     private String title;
 
     @NotEmpty
-    @Column(name = "correct_ans")
-    private Boolean correctAns;
-
-    @NotEmpty
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate;
+
+    @PrePersist
+    public void prePersist() {
+        lastModifiedDate = LocalDateTime.now();
+    }
 
     @PreUpdate
     public void preUpdate() {

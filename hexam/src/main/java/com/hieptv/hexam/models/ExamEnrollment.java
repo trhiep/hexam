@@ -35,4 +35,9 @@ public class ExamEnrollment {
     @NotEmpty
     @Column(name = "enroll_time")
     private LocalDateTime enrollTime;
+
+    @PrePersist
+    public void prePersist() {
+        enrollTime = LocalDateTime.now();
+    }
 }

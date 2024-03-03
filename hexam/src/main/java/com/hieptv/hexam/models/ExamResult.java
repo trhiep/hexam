@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 /**
  * @author trhiep
  */
@@ -26,4 +28,12 @@ public class ExamResult {
     @Column(name = "score")
     private Double score;
 
+    @NotEmpty
+    @Column(name = "submitted_date")
+    private LocalDateTime submittedDate;
+
+    @PrePersist
+    public void prePersist() {
+        submittedDate = LocalDateTime.now();
+    }
 }
