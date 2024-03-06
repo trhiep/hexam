@@ -75,7 +75,7 @@ public class SignupController {
                     .userRole(UserRole.builder().roleCode(role).build())
                     .build();
             personRepository.save(person);
-            return "redirect:/dang-nhap/";
+            return "redirect:/dang-nhap";
         } else {
             model.addAttribute("fullName", fullName);
             model.addAttribute("userName", userName);
