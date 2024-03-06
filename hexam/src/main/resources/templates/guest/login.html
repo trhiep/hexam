@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/guest/head"></head>
-<head th:replace="fragments/guest/head"></head>
+<head th:replace="~{fragments/guest/head}"></head>
+<head th:replace="~{fragments/guest/head}"></head>
 <body>
-<div th:replace="fragments/guest/navbar"></div>
+<div th:replace="~{fragments/guest/navbar}"></div>
 
 <!--Content Start-->
 <div class="container-fluid pt-5">
@@ -43,7 +43,7 @@
 </div>
 <!--Content End-->
 
-<div th:replace="fragments/guest/footer"></div>
-<div th:replace="fragments/guest/scripts"></div>
+<div th:replace="~{fragments/guest/footer}"></div>
+<div th:replace="~{fragments/guest/scripts}"></div>
 </body>
 </html>

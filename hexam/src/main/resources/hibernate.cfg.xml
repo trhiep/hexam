@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
@@ -9,22 +9,21 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3308/hexam</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    	<property name="hibernate.hbm2ddl.auto">update</property>
-    	<property name="show_sql">true</property>
-    	
-    	<!-- Mapping -->
-    	<mapping class="com.hieptv.hexam.models.Answer"/>
-    	<mapping class="com.hieptv.hexam.models.Classes"/>
-    	<mapping class="com.hieptv.hexam.models.ClassExam"/>
-    	<mapping class="com.hieptv.hexam.models.ClassTeacher"/>
-    	<mapping class="com.hieptv.hexam.models.ClassEnrollment"/>
-    	<mapping class="com.hieptv.hexam.models.Exam"/>
-    	<mapping class="com.hieptv.hexam.models.ExamEnrollment"/>
-    	<mapping class="com.hieptv.hexam.models.ExamQuestion"/>
-    	<mapping class="com.hieptv.hexam.models.ExamResult"/>
-    	<mapping class="com.hieptv.hexam.models.ExamSettings"/>
-    	<mapping class="com.hieptv.hexam.models.Person"/>
-    	<mapping class="com.hieptv.hexam.models.UserRole"/>
-    	<mapping class="com.hieptv.hexam.models.StudentAnswer"/>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Mapping -->
+        <mapping class="com.hexam.models.Answer"/>
+        <mapping class="com.hexam.models.Classes"/>
+        <mapping class="com.hexam.models.ClassExam"/>
+        <mapping class="com.hexam.models.ClassTeacher"/>
+        <mapping class="com.hexam.models.ClassEnrollment"/>
+        <mapping class="com.hexam.models.Exam"/>
+        <mapping class="com.hexam.models.ExamEnrollment"/>
+        <mapping class="com.hexam.models.ExamQuestion"/>
+        <mapping class="com.hexam.models.ExamResult"/>
+        <mapping class="com.hexam.models.ExamSettings"/>
+        <mapping class="com.hexam.models.Person"/>
+        <mapping class="com.hexam.models.UserRole"/>
+        <mapping class="com.hexam.models.StudentAnswer"/>
     </session-factory>
 </hibernate-configuration>
