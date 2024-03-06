@@ -1,6 +1,6 @@
 package com.hexam.models;
 
-import com.hexam.constants.ErrorMessage;
+import com.hexam.constants.EntityErrorMessage;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -30,7 +30,7 @@ public class ExamQuestion {
     @JoinColumn (name = "exam_id", referencedColumnName = "exam_id")
     private Exam exam;
 
-    @NotEmpty(message = ErrorMessage.ExamQuestion.NOT_EMPTY_CONTENT)
+    @NotEmpty(message = EntityErrorMessage.ExamQuestion.NOT_EMPTY_CONTENT)
     @Column(name = "content")
     private String content;
 

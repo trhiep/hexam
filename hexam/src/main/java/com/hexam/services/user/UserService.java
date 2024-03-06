@@ -7,4 +7,9 @@ import com.hexam.models.Person;
  */
 public interface UserService {
     Person findByUserName(String userName);
+
+    boolean isExistedUserName(String userName);
+    Person findByEmailAddress(String emailAddress);
+    boolean isExistedEmail(String email);
+
 }

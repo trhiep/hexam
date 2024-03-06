@@ -1,6 +1,6 @@
 package com.hexam.models;
 
-import com.hexam.constants.ErrorMessage;
+import com.hexam.constants.EntityErrorMessage;
 import com.hexam.utils.generator.CodeGenerator;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -27,7 +27,7 @@ public class Classes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer classId;
 
-    @NotEmpty(message = ErrorMessage.Classes.NOT_EMPTY_CLASS_NAME)
+    @NotEmpty(message = EntityErrorMessage.Classes.NOT_EMPTY_CLASS_NAME)
     @Column(name = "class_name")
     private String className;
 

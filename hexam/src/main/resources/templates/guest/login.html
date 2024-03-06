@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/guest/head}"></head>
-<head th:replace="~{fragments/guest/head}"></head>
+<head th:replace="~{fragments/guest/head}"><title></title></head>
 <body>
 <div th:replace="~{fragments/guest/navbar}"></div>
 
@@ -24,6 +23,9 @@
                             <label>Mật khẩu</label>
                             <input name="password" type="password" class="form-control bg-light border-0 px-4" style="height: 55px;" required>
                         </div>
+                        <div class="col-12" th:if="${errorMessage != null}">
+                            <label class="err-msg" th:text="${errorMessage}"></label>
+                        </div>
                         <div class="col-12">
                             <button class="btn btn-primary w-100 py-3" type="submit">ĐĂNG NHẬP</button>
                             <a href="/quen-mat-khau" style="float: right; font-style: italic; text-decoration: none; margin-top: 10px">Quên mật khẩu</a>
@@ -45,5 +47,6 @@
 
 <div th:replace="~{fragments/guest/footer}"></div>
 <div th:replace="~{fragments/guest/scripts}"></div>
+
 </body>
 </html>

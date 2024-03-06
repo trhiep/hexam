@@ -1,6 +1,6 @@
 package com.hexam.models;
 
-import com.hexam.constants.ErrorMessage;
+import com.hexam.constants.EntityErrorMessage;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -29,7 +29,7 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer answerId;
 
-    @NotEmpty(message = ErrorMessage.Answer.NOT_EMPTY_TITLE)
+    @NotEmpty(message = EntityErrorMessage.Answer.NOT_EMPTY_TITLE)
     @Column(name = "title")
     private String title;
 

@@ -40,7 +40,8 @@ public class SecurityConfig {
                         .loginProcessingUrl("/dang-nhap")
                         .usernameParameter("username")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/admin"));
+                        .defaultSuccessUrl("/"));
         return httpSecurity.build();
     }
+
 }
