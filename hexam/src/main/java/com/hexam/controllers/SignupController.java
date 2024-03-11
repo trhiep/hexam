@@ -9,15 +9,12 @@ import com.hexam.repositories.PersonRepository;
 import com.hexam.services.user.UserServiceImpl;
 import com.hexam.utils.validator.RegexValidator;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.net.http.HttpRequest;
 
 /**
  * @author trhiep
@@ -34,7 +31,7 @@ public class SignupController {
     @RequestMapping("/dang-ky")
     public String getSignupPage(Model model) {
         model.addAttribute("pageTitle", "Đăng ký");
-        return "guest/signup";
+        return "pages/guest/signup";
     }
 
     @RequestMapping(value = "/dang-ky", method = RequestMethod.POST)
@@ -82,7 +79,7 @@ public class SignupController {
             model.addAttribute("email", email);
         }
         model.addAttribute("pageTitle", "Đăng ký");
-        return "guest/signup";
+        return "pages/guest/signup";
     }
 
     private boolean isValidFullName(String fullName, Model model) {

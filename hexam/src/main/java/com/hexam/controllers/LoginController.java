@@ -22,7 +22,7 @@ public class LoginController {
             model.addAttribute("errorMessage", WebErrorMessage.LoginError.INVALID_USERNAME_OR_PASSWORD);
         }
         model.addAttribute("pageTitle", "Đăng nhập");
-        return "guest/login";
+        return "pages/guest/login";
     }
 
 }

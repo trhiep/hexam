@@ -1,10 +1,13 @@
 package com.hexam.services.user;
 
+import com.hexam.dtos.TeacherDTO;
 import com.hexam.models.Person;
 import com.hexam.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author trhiep
@@ -33,5 +36,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean isExistedEmail(String email) {
         return personRepository.findByEmailAddress(email) == null;
+    }
+
+    @Override
+    public List<TeacherDTO> findAllTeacher() {
+        return personRepository.findAllTeacher();
     }
 }

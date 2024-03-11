@@ -43,11 +43,15 @@ public class Person {
     @Column(name = "email_address")
     private String emailAddress;
 
+    @Column(name = "profile_image")
+    private String profileImage;
+
     @Column(name = "enable")
     private Boolean enable;
 
     @PrePersist
     public void prePersist() {
+        profileImage = "https://png.pngtree.com/element_our/png/20181015/graduation-hat-material-design-png_131387.jpg";
         enable = true;
     }
 

@@ -1,0 +1,31 @@
+package com.hexam.dtos;
+
+import lombok.Builder;
+import lombok.Data;
+
+/**
+ * @author trhiep
+ */
+
+@Data
+@Builder
+public class TeacherDTO {
+    private Integer personId;
+    private String profileImage;
+    private String fullName;
+    private String userName;
+    private String emailAddress;
+    private Boolean enable;
+
+    public TeacherDTO(Integer personId, String profileImage, String fullName, String userName, String emailAddress, Boolean enable) {
+        this.personId = personId;
+        this.profileImage = profileImage;
+        this.fullName = fullName;
+        this.userName = userName;
+        this.emailAddress = emailAddress;
+        this.enable = enable;
+    }
+
+    public TeacherDTO() {
+    }
+}

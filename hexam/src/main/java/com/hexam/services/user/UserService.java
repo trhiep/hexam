@@ -1,6 +1,9 @@
 package com.hexam.services.user;
 
+import com.hexam.dtos.TeacherDTO;
 import com.hexam.models.Person;
+
+import java.util.List;
 
 /**
  * @author trhiep
@@ -11,5 +14,7 @@ public interface UserService {
     boolean isExistedUserName(String userName);
     Person findByEmailAddress(String emailAddress);
     boolean isExistedEmail(String email);
+
+    List<TeacherDTO> findAllTeacher();
 
 }

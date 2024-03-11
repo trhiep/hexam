@@ -166,3 +166,12 @@
     color: #F44336;
     font-style: italic;
 }
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.img-profile {
+    height: 1rem;
+    width: 1rem;
+}

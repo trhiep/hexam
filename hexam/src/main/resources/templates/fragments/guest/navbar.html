@@ -1,14 +1,37 @@
 <nav th:fragments="navbar" class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-  <a th:href="@{/}" class="navbar-brand ms-lg-5">
-    <h1 class="m-0 text-dark"><i class="fa-solid fa-graduation-cap fs-1 text-primary me-3"></i> HExam</h1>
-  </a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="navbar-nav ms-auto py-0">
-      <a th:href="@{/}" class="nav-item nav-link active">Trang Chủ</a>
-      <a th:href="@{dang-nhap}" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">ĐĂNG NHẬP <i class="bi bi-arrow-right"></i></a>
+    <a th:href="@{/}" class="navbar-brand ms-lg-5">
+        <h1 class="m-0 text-dark"><i class="fa-solid fa-graduation-cap fs-1 text-primary me-3"></i> HExam</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+            <a th:href="@{/}" class="nav-item nav-link active">Trang Chủ</a>
+
+            <a th:if="${person == null}" th:href="@{dang-nhap}"
+               class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">ĐĂNG NHẬP <i
+                    class="bi bi-arrow-right"></i></a>
+
+            <div th:if="${person != null}" class="nav-item dropdown">
+                <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5 nav-link dropdown-toggle" data-bs-toggle="dropdown" th:text="${person.getFullName()}"></a>
+                <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                    <a th:href="@{/trang-ca-nhan}" class="dropdown-item">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Trang cá nhân
+                    </a>
+                    <a th:href="@{/lop-hoc}" class="dropdown-item">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        Lớp học
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a th:href="@{dang-xuat}" class="dropdown-item">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Đăng xuất
+                    </a>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
 </nav>
