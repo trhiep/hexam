@@ -42,7 +42,6 @@ public class Classes {
 
     @PrePersist
     public void prePersist() {
-        joinCode = CodeGenerator.generateRandomString(6);
         active = true;
         lastModifiedDate = LocalDateTime.now();
     }

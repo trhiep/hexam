@@ -1,0 +1,34 @@
+<div th:fragments="toast">
+    <!-- Toast Container -->
+    <div class="toast-container position-absolute end-0 p-3" style="z-index: 11; bottom: 78%">
+        <!-- Toast -->
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
+            <div class="toast-header">
+                <strong class="mr-auto">THÔNG BÁO</strong>
+            </div>
+            <div class="toast-body">
+                <span id="toastMessageContent"></span>
+            </div>
+        </div>
+        <!-- End of Toast -->
+    </div>
+    <!-- End of Toast Container -->
+
+    <!-- Script to trigger the toast -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let toastMessageInput = document.getElementById("toastMessage");
+            let toastMessageContent = document.getElementById("toastMessageContent");
+
+            // Kiểm tra xem input hidden có nội dung không
+            if (toastMessageInput && toastMessageInput.value) {
+                // Hiển thị nội dung của toast
+                toastMessageContent.innerText = toastMessageInput.value;
+
+                // Hiển thị toast
+                var myToast = new bootstrap.Toast(document.getElementById('myToast'));
+                myToast.show();
+            }
+        });
+    </script>
+</div>

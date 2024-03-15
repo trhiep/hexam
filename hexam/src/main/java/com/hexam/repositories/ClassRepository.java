@@ -1,9 +1,11 @@
 package com.hexam.repositories;
 
+import com.hexam.dtos.ClassTeacherDTO;
 import com.hexam.dtos.TeacherDTO;
 import com.hexam.models.Classes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -13,18 +15,20 @@ import java.util.List;
 public interface ClassRepository extends JpaRepository<Classes, Integer> {
 
     @Query(value = """
-            SELECT new com.hexam.dtos.TeacherDTO
+            SELECT new com.hexam.dtos.ClassTeacherDTO
             (
                 p.personId,
-                p.profileImage,
-                p.fullName,
-                p.userName,
-                p.emailAddress,
-                p.enable
+                cl.classId,
+                cl.className,
+                cl.joinCode,
+                cl.active,
+                cl.lastModifiedDate
             )
-            FROM Person p
-            WHERE p.userRole.roleCode = 'TEACH'
+            FROM Classes cl JOIN ClassTeacher ct ON cl.classId = ct.classes.classId JOIN Person p ON ct.person.personId = p.personId
+            WHERE p.userRole.roleCode = 'TEACH' AND p.personId = :personId
             """
     )
-    List<TeacherDTO> findAllTeacher();
+    List<ClassTeacherDTO> findClassesForTeacherByPersonId(@Param("personId") Integer personId);
+
+    Classes getClassesByJoinCode(String joinCode);
 }
