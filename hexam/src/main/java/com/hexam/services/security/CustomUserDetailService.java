@@ -27,7 +27,6 @@ public class CustomUserDetailService implements UserDetailsService {
         if (person == null) {
             return null;
         }
-        List<Integer> integerList = new ArrayList<>();
         Collection<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
         grantedAuthoritySet.add(new SimpleGrantedAuthority("ROLE_" + person.getUserRole().getRoleCode().toUpperCase()));
         return new CustomUserDetails(person, grantedAuthoritySet);
