@@ -10,6 +10,7 @@ import com.hexam.repositories.ClassTeacherRepository;
 import com.hexam.repositories.PersonRepository;
 import com.hexam.services.classes.ClassService;
 import com.hexam.services.classes.ClassServiceImpl;
+import com.hexam.services.classes.ClassTeacherService;
 import com.hexam.services.teacher.TeacherService;
 import com.hexam.services.user.UserServiceImpl;
 import com.hexam.utils.generator.CodeGenerator;
@@ -73,7 +74,6 @@ public class TeacherController {
     @RequestMapping("/tao-lop-hoc")
     public String createClass(HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
         getUserDetailsInf(model);
-
         String className = request.getParameter("className");
         String joinCode = CodeGenerator.generateRandomString(6);
         while (true) {
@@ -88,7 +88,6 @@ public class TeacherController {
                 .className(className)
                 .joinCode(joinCode)
                 .build();
-        System.out.println(newClass);
         classService.saveClass(newClass);
 
         Person person = (Person) model.getAttribute("person");
@@ -96,6 +95,28 @@ public class TeacherController {
         classTeacherRepository.save(new ClassTeacher(insertedClass, person));
 
         redirectAttributes.addFlashAttribute("toastMessage", "Tạo lớp học thành công!");
+        return "redirect:/giao-vien/";
+    }
+
+    @Autowired
+    ClassTeacherService classTeacherService;
+    @RequestMapping("/tham-gia-lop-hoc")
+    public String joinClass(HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
+        getUserDetailsInf(model);
+        String joinCode = request.getParameter("joinCode");
+        Classes foundClass = classService.getClassesByJoinCode(joinCode);
+        if (foundClass == null) {
+            redirectAttributes.addFlashAttribute("toastMessage", "Mã tham gia không tồn tại!");
+        } else {
+            Person person = (Person) model.getAttribute("person");
+            ClassTeacher foundClassTeacher = classTeacherService.findClassTeacherByPersonPersonIdAndClassesClassId(person.getPersonId(), foundClass.getClassId());
+            if (foundClassTeacher != null) {
+                redirectAttributes.addFlashAttribute("toastMessage", "Bạn đang tham gia lớp học này!");
+            } else {
+                classTeacherRepository.save(new ClassTeacher(foundClass, person));
+                redirectAttributes.addFlashAttribute("toastMessage", "Tham gia lớp học thành công!");
+            }
+        }
         return "redirect:/giao-vien/";
     }
 }

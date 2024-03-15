@@ -1,14 +1,12 @@
-package com.hexam.repositories;
+package com.hexam.services.classes;
 
 import com.hexam.models.ClassTeacher;
-import com.hexam.models.ClassTeacherId;
 import com.hexam.models.Classes;
 import com.hexam.models.Person;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author trhiep
  */
-public interface ClassTeacherRepository extends JpaRepository<ClassTeacher, ClassTeacherId> {
+public interface ClassTeacherService {
     ClassTeacher findClassTeacherByPersonPersonIdAndClassesClassId(Integer personId, Integer classId);
 }
