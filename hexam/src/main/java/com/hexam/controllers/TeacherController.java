@@ -76,6 +76,14 @@ public class TeacherController {
 
         String className = request.getParameter("className");
         String joinCode = CodeGenerator.generateRandomString(6);
+        while (true) {
+            Classes foundClass = classService.getClassesByJoinCode(joinCode);
+            if (foundClass != null) {
+                joinCode = CodeGenerator.generateRandomString(6);
+            } else {
+                break;
+            }
+        }
         Classes newClass = Classes.builder()
                 .className(className)
                 .joinCode(joinCode)
