@@ -18,20 +18,17 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "exam_settings", uniqueConstraints = {@UniqueConstraint(columnNames = "exam_code")})
+@Table(name = "exam_settings")
 public class ExamSettings {
 
     @Id
     @OneToOne
-    @JoinColumn(name = "exam_id", referencedColumnName = "exam_id")
+    @JoinColumn(name = "exam_code", referencedColumnName = "exam_code")
     private Exam exam;
 
     @NotEmpty(message = EntityErrorMessage.ExamSettings.NOT_EMPTY_EXAM_NAME)
     @Column(name = "exam_name")
     private String examName;
-
-    @Column(name = "exam_code")
-    private String examCode;
 
     @Column(name = "exam_description")
     private String examDescription;

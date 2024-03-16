@@ -29,7 +29,7 @@ public class ExamEnrollment {
     private Person person;
 
     @ManyToOne
-    @JoinColumn(name = "exam_id", referencedColumnName = "exam_id")
+    @JoinColumn(name = "exam_code", referencedColumnName = "exam_code")
     private Exam exam;
 
     @Column(name = "enroll_time")

@@ -19,9 +19,8 @@ import java.time.LocalDateTime;
 public class Exam {
 
     @Id
-    @Column(name = "exam_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer examId;
+    @Column(name = "exam_code")
+    private String examCode;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "created_by", referencedColumnName = "person_id")

@@ -25,6 +25,6 @@ public class ClassExam {
 
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "exam_id", referencedColumnName = "exam_id")
+    @JoinColumn(name = "exam_code", referencedColumnName = "exam_code")
     private Exam exam;
 }

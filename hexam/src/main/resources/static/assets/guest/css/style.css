@@ -186,3 +186,11 @@
 .bg-silver {
     background-color: rgb(225, 225, 225);
 }
+
+.text-bold {
+    font-weight: bold !important;
+}
+
+.hexam-input-tag {
+    height: 55px !important;
+}

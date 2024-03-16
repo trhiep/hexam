@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -140,5 +141,18 @@ public class TeacherController {
         }
         model.addAttribute("toastMessage", (String) model.getAttribute("toastMessage"));
         return "pages/teacher/my-exam";
+    }
+
+    @RequestMapping(value = "/bai-thi/tao-bai-thi", method = RequestMethod.GET)
+    public String createExamGet(Model model) {
+        getUserDetailsInf(model);
+        return "pages/teacher/create-exam";
+    }
+
+    @RequestMapping(value = "/bai-thi/tao-bai-thi", method = RequestMethod.POST)
+    public String createExamPost(Model model, RedirectAttributes redirectAttributes) {
+        getUserDetailsInf(model);
+        redirectAttributes.addFlashAttribute("toastMessage", "Hello");
+        return "redirect:/giao-vien/bai-thi";
     }
 }
