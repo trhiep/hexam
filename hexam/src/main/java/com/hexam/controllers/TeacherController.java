@@ -52,17 +52,21 @@ public class TeacherController {
 
     @RequestMapping("/")
     public String homePage(Model model) {
+        getUserDetailsInf(model);
+        model.addAttribute("toastMessage", (String) model.getAttribute("toastMessage"));
+        return "pages/teacher/index";
+    }
 
+    @RequestMapping("/lop-hoc-cua-toi")
+    public String myClass(Model model) {
         getUserDetailsInf(model);
         Person person = (Person) model.getAttribute("person");
         if (person != null) {
             List<ClassTeacherDTO> classesOfTeacher = teacherService.findClassesForTeacherByPersonId(person.getPersonId());
             model.addAttribute("classList", classesOfTeacher);
         }
-
         model.addAttribute("toastMessage", (String) model.getAttribute("toastMessage"));
-
-        return "pages/teacher/index";
+        return "pages/teacher/my-class";
     }
 
     @Autowired
@@ -95,7 +99,7 @@ public class TeacherController {
         classTeacherRepository.save(new ClassTeacher(insertedClass, person));
 
         redirectAttributes.addFlashAttribute("toastMessage", "Tạo lớp học thành công!");
-        return "redirect:/giao-vien/";
+        return "redirect:/giao-vien/lop-hoc-cua-toi";
     }
 
     @Autowired
@@ -117,6 +121,6 @@ public class TeacherController {
                 redirectAttributes.addFlashAttribute("toastMessage", "Tham gia lớp học thành công!");
             }
         }
-        return "redirect:/giao-vien/";
+        return "redirect:/giao-vien/lop-hoc-cua-toi";
     }
 }
