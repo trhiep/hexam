@@ -182,3 +182,7 @@
     right: 0;
     z-index: 11;
 }
+
+.bg-silver {
+    background-color: rgb(225, 225, 225);
+}

@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "exam_settings")
+@Table(name = "exam_settings", uniqueConstraints = {@UniqueConstraint(columnNames = "exam_code")})
 public class ExamSettings {
 
     @Id
@@ -29,6 +29,9 @@ public class ExamSettings {
     @NotEmpty(message = EntityErrorMessage.ExamSettings.NOT_EMPTY_EXAM_NAME)
     @Column(name = "exam_name")
     private String examName;
+
+    @Column(name = "exam_code")
+    private String examCode;
 
     @Column(name = "exam_description")
     private String examDescription;

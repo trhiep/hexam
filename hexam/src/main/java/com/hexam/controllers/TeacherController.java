@@ -5,12 +5,14 @@ import com.hexam.dtos.ClassTeacherDTO;
 import com.hexam.dtos.TeacherDTO;
 import com.hexam.models.ClassTeacher;
 import com.hexam.models.Classes;
+import com.hexam.models.Exam;
 import com.hexam.models.Person;
 import com.hexam.repositories.ClassTeacherRepository;
 import com.hexam.repositories.PersonRepository;
 import com.hexam.services.classes.ClassService;
 import com.hexam.services.classes.ClassServiceImpl;
 import com.hexam.services.classes.ClassTeacherService;
+import com.hexam.services.exam.ExamService;
 import com.hexam.services.teacher.TeacherService;
 import com.hexam.services.user.UserServiceImpl;
 import com.hexam.utils.generator.CodeGenerator;
@@ -60,6 +62,7 @@ public class TeacherController {
     @RequestMapping("/lop-hoc-cua-toi")
     public String myClass(Model model) {
         getUserDetailsInf(model);
+        model.addAttribute("pageTitle", "Lớp học của tôi");
         Person person = (Person) model.getAttribute("person");
         if (person != null) {
             List<ClassTeacherDTO> classesOfTeacher = teacherService.findClassesForTeacherByPersonId(person.getPersonId());
@@ -122,5 +125,20 @@ public class TeacherController {
             }
         }
         return "redirect:/giao-vien/lop-hoc-cua-toi";
+    }
+
+
+    @Autowired
+    ExamService examService;
+    @RequestMapping("/bai-thi")
+    public String myExam(Model model) {
+        getUserDetailsInf(model);
+        Person person = (Person) model.getAttribute("person");
+        if (person != null) {
+            List<Exam> exams = examService.findExamsByPersonPersonId(person.getPersonId());
+            model.addAttribute("exams", exams);
+        }
+        model.addAttribute("toastMessage", (String) model.getAttribute("toastMessage"));
+        return "pages/teacher/my-exam";
     }
 }
