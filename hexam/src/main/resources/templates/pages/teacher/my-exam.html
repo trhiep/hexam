@@ -45,7 +45,8 @@
                         <div class="row gy-3">
                             <div class="col-md-3" th:each="exam : ${exams}">
                                 <div class="card" style="width: 100%">
-                                    <img class="card-img-top default-exam-img" th:src="${exam.getImageLink()}" alt="Exam image">
+                                    <img class="card-img-top default-exam-img" th:if="${exam.getImageLink() != null}" th:src="${exam.getImageLink()}" alt="Exam image">
+                                    <img class="card-img-top default-exam-img" th:if="${exam.getImageLink() == null}" th:src="@{/assets/guest/img/default-exam-image.jpg}" alt="Exam image">
                                     <div class="card-body">
                                         <a th:href="@{#}"><h5 class="card-title text-center nav-link default-exam-name" th:text="${exam.getExamName()}"></h5></a>
                                     </div>
