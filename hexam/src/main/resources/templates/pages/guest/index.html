@@ -29,55 +29,39 @@
             <h6 class="text-primary text-uppercase">ĐỀ THI CHO BẠN</h6>
             <h1 class="display-5 text-uppercase mb-0">ĐỀ THI THAM KHẢO</h1>
         </div>
+        <div th:if="${publicExamsNow.isEmpty()}">
+            <div class="text-center">
+                <img class="home-exam-img" th:src="@{/assets/guest/img/mpty.png}" alt="">
+                <h3 class="pb-2">THƯ VIỆN ĐỀ THI THAM KHẢO ĐANG ĐƯỢC CẬP NHẬT<span class="text-container" id="textContainer"></span></h3>
+            </div>
+        </div>
         <div class="owl-carousel product-carousel">
-            <a th:href="@{#}">
-            <div class="pb-5">
-                <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                    <img class="img-fluid mb-4" th:src="@{/assets/guest/img/lich-su.jpg}" alt="">
-                    <h6 class="text-uppercase">Câu Hỏi Lịch Sử 12</h6>
-                    <h5 class="text-primary mb-0"><i class="bi bi-people"></i> 9999</h5>
-                </div>
-            </div>
-            </a>
-            <a th:href="@{#}">
-            <div class="pb-5">
-                <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                    <img class="img-fluid mb-4" th:src="@{/assets/guest/img/gia-tich.png}" alt="">
-                    <h6 class="text-uppercase">Câu Hỏi Giải Tích 12</h6>
-                    <h5 class="text-primary mb-0"><i class="bi bi-people"></i> 9999</h5>
-                </div>
-            </div>
-            </a>
-            <a th:href="@{#}">
-            <div class="pb-5">
-                <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                    <img class="img-fluid mb-4" th:src="@{/assets/guest/img/vat-ly.jpg}" alt="">
-                    <h6 class="text-uppercase">Câu Hỏi Vật Lý 12</h6>
-                    <h5 class="text-primary mb-0"><i class="bi bi-people"></i> 9999</h5>
-                </div>
-            </div>
-            </a>
-            <a th:href="@{#}">
-            <div class="pb-5">
-                <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                    <img class="img-fluid mb-4" th:src="@{/assets/guest/img/dia-ly.jpg}" alt="">
-                    <h6 class="text-uppercase">Câu Hỏi Địa Lý 12</h6>
-                    <h5 class="text-primary mb-0"><i class="bi bi-people"></i> 9999</h5>
-                </div>
-            </div>
-            </a>
-            <a th:href="@{#}">
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" th:src="@{/assets/guest/img/toan.png}" alt="">
-                        <h6 class="text-uppercase">Câu Hỏi Toán 12</h6>
-                        <h5 class="text-primary mb-0"><i class="bi bi-people"></i> 9999</h5>
+            <div th:each="exam : ${publicExamsNow}">
+                <a th:href="@{/bai-thi/}">
+                    <div class="pb-5">
+                        <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                            <img class="img-fluid mb-4 home-exam-img" th:src="${exam.getImageLink()}" alt="">
+                            <h6 class="text-uppercase nav-link" th:text="${exam.getExamName()}"></h6>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    const textContainer = document.getElementById('textContainer');
+    const dots = [' ', '. ', '.. ', '... '];
+    let index = 0;
+
+    function animateText() {
+        textContainer.textContent = dots[index % 4];
+        index++;
+    }
+
+    setInterval(animateText, 500); // Thay đổi số 500 để điều chỉnh tốc độ hiệu ứng
+</script>
 <!-- Products End -->
 
 <div th:replace="~{fragments/guest/footer}"></div>

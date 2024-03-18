@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -189,6 +190,7 @@ public class TeacherController {
                 .publication(1)
                 .duration(60)
                 .passScore(50.0)
+                .startDate(LocalDateTime.now())
                 .build();
         examSettingsRepository.save(newExamSettings);
         redirectAttributes.addFlashAttribute("toastMessage", "Hello");

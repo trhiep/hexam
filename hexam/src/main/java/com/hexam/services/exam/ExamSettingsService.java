@@ -2,6 +2,7 @@ package com.hexam.services.exam;
 
 import com.hexam.models.ExamSettings;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -9,4 +10,6 @@ import java.util.List;
  */
 public interface ExamSettingsService {
     ExamSettings getExamSettingsByExamExamCode(String examCode);
+
+    List<ExamSettings> getExamSettingsByPublicationAndEndDateAfter(Integer publication, LocalDateTime endDate);
 }

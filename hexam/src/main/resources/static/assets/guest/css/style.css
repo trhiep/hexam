@@ -209,6 +209,10 @@
     height: 250px;
 }
 
+.home-exam-img {
+    height: 350px;
+}
+
 .default-exam-name {
     width: 100%;
     overflow: hidden;
