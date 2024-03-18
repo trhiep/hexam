@@ -25,7 +25,7 @@ public class Classes {
     @Id
     @Column(name = "class_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer classId;
+    private Long classId;
 
     @NotEmpty(message = EntityErrorMessage.Classes.NOT_EMPTY_CLASS_NAME)
     @Column(name = "class_name")

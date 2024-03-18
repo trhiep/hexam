@@ -8,5 +8,5 @@ import com.hexam.models.Person;
  * @author trhiep
  */
 public interface ClassTeacherService {
-    ClassTeacher findClassTeacherByPersonPersonIdAndClassesClassId(Integer personId, Integer classId);
+    ClassTeacher findClassTeacherByPersonPersonIdAndClassesClassId(Long personId, Long classId);
 }

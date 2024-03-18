@@ -22,7 +22,7 @@ public class ExamEnrollment {
     @Id
     @Column(name = "enrollment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer enrollmentId;
+    private Long enrollmentId;
 
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "person_id")

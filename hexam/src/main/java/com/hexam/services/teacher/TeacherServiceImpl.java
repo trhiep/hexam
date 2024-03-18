@@ -18,7 +18,7 @@ public class TeacherServiceImpl implements TeacherService{
     ClassRepository classRepository;
 
     @Override
-    public List<ClassTeacherDTO> findClassesForTeacherByPersonId(Integer personId) {
+    public List<ClassTeacherDTO> findClassesForTeacherByPersonId(Long personId) {
         return classRepository.findClassesForTeacherByPersonId(personId);
     }
 }

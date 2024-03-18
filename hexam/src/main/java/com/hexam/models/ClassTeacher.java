@@ -1,5 +1,6 @@
 package com.hexam.models;
 
+import com.hexam.models.IdClass.ClassTeacherId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

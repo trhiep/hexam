@@ -3,6 +3,7 @@ package com.hexam.models;
 import com.hexam.constants.EntityErrorMessage;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,10 @@ import java.time.LocalDateTime;
 public class ExamSettings {
 
     @Id
+    @Column(name = "exam_settings_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long examSettingsId;
+
     @OneToOne
     @JoinColumn(name = "exam_code", referencedColumnName = "exam_code")
     private Exam exam;
@@ -36,7 +41,7 @@ public class ExamSettings {
     @Column(name = "image_link")
     private String imageLink;
 
-    @NotEmpty(message = EntityErrorMessage.ExamSettings.NOT_EMPTY_PUBLICATION)
+    @NotNull(message = EntityErrorMessage.ExamSettings.NOT_EMPTY_PUBLICATION)
     @Column(name = "publication")
     private Integer publication;
 
@@ -46,14 +51,14 @@ public class ExamSettings {
     @Column(name = "end_date")
     private LocalDateTime endDate;
 
-    @NotEmpty(message = EntityErrorMessage.ExamSettings.NOT_EMPTY_DURATION)
+    @NotNull(message = EntityErrorMessage.ExamSettings.NOT_EMPTY_DURATION)
     @Column(name = "duration")
     private Integer duration;
 
     @Column(name = "attempts")
     private Integer attempts;
 
-    @NotEmpty(message = EntityErrorMessage.ExamSettings.NOT_EMPTY_PASS_SCORE)
+    @NotNull(message = EntityErrorMessage.ExamSettings.NOT_EMPTY_PASS_SCORE)
     @Column(name = "pass_score")
     private Double passScore;
 

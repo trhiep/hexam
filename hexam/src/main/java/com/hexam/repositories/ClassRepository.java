@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author trhiep
  */
-public interface ClassRepository extends JpaRepository<Classes, Integer> {
+public interface ClassRepository extends JpaRepository<Classes, Long> {
 
     @Query(value = """
             SELECT new com.hexam.dtos.ClassTeacherDTO
@@ -28,7 +28,7 @@ public interface ClassRepository extends JpaRepository<Classes, Integer> {
             WHERE p.userRole.roleCode = 'TEACH' AND p.personId = :personId
             """
     )
-    List<ClassTeacherDTO> findClassesForTeacherByPersonId(@Param("personId") Integer personId);
+    List<ClassTeacherDTO> findClassesForTeacherByPersonId(@Param("personId") Long personId);
 
     Classes getClassesByJoinCode(String joinCode);
 }

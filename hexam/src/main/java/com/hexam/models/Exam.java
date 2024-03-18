@@ -22,7 +22,7 @@ public class Exam {
     @Column(name = "exam_code")
     private String examCode;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "created_by", referencedColumnName = "person_id")
     private Person person;
 

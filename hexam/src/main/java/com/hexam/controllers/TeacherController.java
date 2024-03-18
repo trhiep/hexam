@@ -2,19 +2,16 @@ package com.hexam.controllers;
 
 import com.hexam.config.CustomUserDetails;
 import com.hexam.dtos.ClassTeacherDTO;
-import com.hexam.dtos.TeacherDTO;
-import com.hexam.models.ClassTeacher;
-import com.hexam.models.Classes;
-import com.hexam.models.Exam;
-import com.hexam.models.Person;
+import com.hexam.models.*;
 import com.hexam.repositories.ClassTeacherRepository;
+import com.hexam.repositories.ExamRepository;
+import com.hexam.repositories.ExamSettingsRepository;
 import com.hexam.repositories.PersonRepository;
-import com.hexam.services.classes.ClassService;
 import com.hexam.services.classes.ClassServiceImpl;
 import com.hexam.services.classes.ClassTeacherService;
 import com.hexam.services.exam.ExamService;
 import com.hexam.services.teacher.TeacherService;
-import com.hexam.services.user.UserServiceImpl;
+import com.hexam.utils.cloudinary.CloudinaryUploader;
 import com.hexam.utils.generator.CodeGenerator;
 import com.hexam.utils.loader.SecurityInformationLoader;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +21,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -131,6 +130,11 @@ public class TeacherController {
 
     @Autowired
     ExamService examService;
+    @Autowired
+    ExamRepository examRepository;
+
+    @Autowired
+    ExamSettingsRepository examSettingsRepository;
     @RequestMapping("/bai-thi")
     public String myExam(Model model) {
         getUserDetailsInf(model);
@@ -150,8 +154,36 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/bai-thi/tao-bai-thi", method = RequestMethod.POST)
-    public String createExamPost(Model model, RedirectAttributes redirectAttributes) {
+    public String createExamPost(@RequestParam("imgFile") MultipartFile image, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
         getUserDetailsInf(model);
+        Person person = (Person) model.getAttribute("person");
+
+        String examCode = CodeGenerator.generateRandomString(8);
+        Exam newExam = Exam.builder()
+                .examCode(examCode)
+                .person(person)
+                .build();
+        examRepository.save(newExam);
+
+        String examName = request.getParameter("examName");
+        String imageLink = CloudinaryUploader.uploadImage(image);
+        String description = request.getParameter("examDescription");
+        String startDate = request.getParameter("examStartDate");
+        String endDate = request.getParameter("examEndDate");
+        String duration = request.getParameter("examDuration");
+        String publication = request.getParameter("examPublication");
+        String attempts = request.getParameter("examAttempts");
+
+        ExamSettings newExamSettings = ExamSettings.builder()
+                .exam(newExam)
+                .examName(examName)
+                .imageLink(imageLink)
+                .examDescription(description)
+                .publication(1)
+                .duration(60)
+                .passScore(50.0)
+                .build();
+        examSettingsRepository.save(newExamSettings);
         redirectAttributes.addFlashAttribute("toastMessage", "Hello");
         return "redirect:/giao-vien/bai-thi";
     }

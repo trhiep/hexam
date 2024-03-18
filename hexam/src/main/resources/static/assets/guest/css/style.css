@@ -194,3 +194,13 @@
 .hexam-input-tag {
     height: 55px !important;
 }
+
+.span-warning-italic {
+    color: red;
+    font-style: italic;
+    font-weight: lighter
+}
+
+.span-warning {
+    color: red;
+}

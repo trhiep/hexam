@@ -8,6 +8,6 @@ import java.util.List;
 /**
  * @author trhiep
  */
-public interface ExamRepository extends JpaRepository<Exam, Integer> {
-    List<Exam> findExamsByPersonPersonId(Integer personId);
+public interface ExamRepository extends JpaRepository<Exam, Long> {
+    List<Exam> findExamsByPersonPersonId(Long personId);
 }

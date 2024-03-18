@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface TeacherService {
 
-    List<ClassTeacherDTO> findClassesForTeacherByPersonId(Integer personId);
+    List<ClassTeacherDTO> findClassesForTeacherByPersonId(Long personId);
 
 }

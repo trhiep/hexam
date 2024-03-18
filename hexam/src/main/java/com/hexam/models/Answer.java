@@ -27,7 +27,7 @@ public class Answer {
     @Id
     @Column(name = "answer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer answerId;
+    private Long answerId;
 
     @NotEmpty(message = EntityErrorMessage.Answer.NOT_EMPTY_TITLE)
     @Column(name = "title")

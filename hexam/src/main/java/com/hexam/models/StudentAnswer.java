@@ -12,7 +12,7 @@ public class StudentAnswer {
     @Id
     @Column(name = "student_answer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer studentAnswerId;
+    private Long studentAnswerId;
 
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "person_id")

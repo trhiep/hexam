@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class ClassTeacherDTO {
-    private Integer teacherId;
-    private Integer classId;
+    private Long teacherId;
+    private Long classId;
     private String className;
     private String joinCode;
     private Boolean active;
@@ -26,7 +26,7 @@ public class ClassTeacherDTO {
     public ClassTeacherDTO() {
     }
 
-    public ClassTeacherDTO(Integer teacherId, Integer classId, String className, String joinCode, Boolean active, LocalDateTime lastModifiedDate) {
+    public ClassTeacherDTO(Long teacherId, Long classId, String className, String joinCode, Boolean active, LocalDateTime lastModifiedDate) {
         this.teacherId = teacherId;
         this.classId = classId;
         this.className = className;

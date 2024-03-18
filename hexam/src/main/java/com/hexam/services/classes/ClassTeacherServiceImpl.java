@@ -17,7 +17,7 @@ public class ClassTeacherServiceImpl implements ClassTeacherService{
     ClassTeacherRepository classTeacherRepository;
 
     @Override
-    public ClassTeacher findClassTeacherByPersonPersonIdAndClassesClassId(Integer personId, Integer classId) {
+    public ClassTeacher findClassTeacherByPersonPersonIdAndClassesClassId(Long personId, Long classId) {
         return classTeacherRepository.findClassTeacherByPersonPersonIdAndClassesClassId(personId, classId);
     }
 }

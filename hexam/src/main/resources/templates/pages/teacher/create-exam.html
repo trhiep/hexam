@@ -11,59 +11,65 @@
             <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
                 <h1 class="display-5 text-uppercase mb-0">TẠO BÀI THI</h1>
             </div>
-            <form th:action="@{/tao-bai-thi}" method="POST">
+            <form th:action="@{tao-bai-thi}" method="POST" enctype="multipart/form-data">
                 <div class="row g-3">
                     <div class="col-12">
-                        <label for="inp_exam-name" class="text-bold">Tên bài thi</label>
+                        <p>Những thông tin có đánh dấu <span class="span-warning">*</span> là bắt buộc.</p>
+                    </div>
+                    <div class="col-12">
+                        <label for="inp_exam-name" class="text-bold">Tên bài thi<span class="span-warning-italic">*</span></label>
                         <input th:value="${examName}" id="inp_exam-name" name="examName" type="text"
                                class="form-control bg-light border-0 px-4 hexam-input-tag" placeholder="Nhập tên bài thi" required>
                     </div>
 
                     <div class="col-12">
-                        <label for="tinymce" class="text-bold">Mô tả bài thi</label>
-                        <textarea th:value="${examDescription}" name="projectData" id="tinymce"
-                                  placeholder="Mô tả bài thi" class="form-control bg-light"></textarea>
+                        <label for="imgFile" class="text-bold">Ảnh đại diện</label>
+                        <input class="form-control form-control-lg bg-light border-0" type="file" name="imgFile" id="imgFile" accept=".png, .jpg">
                     </div>
 
                     <div class="col-12">
-                        <label for="inp_exam-start-date" class="text-bold">Ngày bắt đầu</label>
-                        <input th:value="${examStartDate}" id="inp_exam-start-date" name="startDate" type="text"
-                               pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy"
-                               class="form-control bg-light border-0 px-4 hexam-input-tag">
+                        <label for="tinymce" class="text-bold">Mô tả bài thi</label>
+                        <textarea th:value="${examDescription}" name="examDescription" id="tinymce"
+                                  placeholder="Mô tả bài thi" class="form-control bg-light border-0"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="inp_exam-start-date" class="text-bold">Ngày bắt đầu<span class="span-warning-italic">*</span></label>
+                        <input th:value="${examStartDate}" id="inp_exam-start-date" name="examStartDate" type="text" placeholder="dd-mm-yyyy hh:mm"
+                               class="form-control bg-light border-0 px-4 hexam-input-tag" required>
                     </div>
 
                     <div class="col-12">
                         <label for="inp_exam-end-date" class="text-bold">Ngày kết thúc</label>
-                        <input th:value="${examEndDate}" id="inp_exam-end-date" name="endDate" type="text"
-                               pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy"
+                        <input th:value="${examEndDate}" id="inp_exam-end-date" name="examEndDate" type="text" placeholder="dd-mm-yyyy hh:mm"
                                class="form-control bg-light border-0 px-4 hexam-input-tag">
                         <small>*Bỏ trống nếu không muốn đặt ngày kết thúc cho bài thi</small>
                     </div>
 
                     <div class="col-12">
-                        <label for="inp_exam-duration" class="text-bold">Thời gian làm bài</label>
-                        <input th:value="${examDuration}" id="inp_exam-duration" name="duration" type="text"
-                               placeholder="Nhập số phút" class="form-control bg-light border-0 px-4 hexam-input-tag">
+                        <label for="inp_exam-duration" class="text-bold">Thời gian làm bài<span class="span-warning-italic">*</span></label>
+                        <input th:value="${examDuration}" id="inp_exam-duration" name="examDuration" type="text"
+                               placeholder="Nhập số phút" class="form-control bg-light border-0 px-4 hexam-input-tag" required>
                     </div>
 
                     <div class="col-12">
-                        <label class="text-bold">Chế độ công khai</label>
+                        <label class="text-bold">Chế độ công khai<span class="span-warning-italic">*</span></label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="publication" id="btn_public"
+                            <input class="form-check-input" type="radio" name="examPublication" id="btn_public"
                                    value="public">
                             <label class="form-check-label" for="btn_public">
                                 Công khai - mọi người đều có thể làm bài
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="publication" id="btn_not-public"
+                            <input class="form-check-input" type="radio" name="examPublication" id="btn_not-public"
                                    value="notPublic" checked>
                             <label class="form-check-label" for="btn_not-public">
                                 Không công khai - chỉ dành cho lớp học của bạn
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="publication" id="btn_private"
+                            <input class="form-check-input" type="radio" name="examPublication" id="btn_private"
                                    value="private">
                             <label class="form-check-label" for="btn_private">
                                 Riêng tư - chỉ mình bạn
@@ -73,7 +79,7 @@
 
                     <div class="col-12">
                         <label for="inp_exam-attempts" class="text-bold">Số lần làm bài</label>
-                        <input th:value="${examAttempts}" id="inp_exam-attempts" name="duration" type="text"
+                        <input th:value="${examAttempts}" id="inp_exam-attempts" name="examAttempts" type="text"
                                placeholder="Nhập số lần làm bài với mỗi học sinh" class="form-control bg-light border-0 hexam-input-tag">
                         <small>*Bỏ trống nếu không muốn giới hạn số lần làm bài thi.</small>
                     </div>
@@ -144,12 +150,16 @@
 
 <script>
     flatpickr("#inp_exam-start-date", {
-        dateFormat: "d/m/Y"
+        enableTime: true,
+        dateFormat: "d-m-Y H:i",
+        time_24hr: true
     });
 </script>
 <script>
     flatpickr("#inp_exam-end-date", {
-        dateFormat: "d/m/Y"
+        enableTime: true,
+        dateFormat: "d-m-Y H:i",
+        time_24hr: true
     });
 </script>
 

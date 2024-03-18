@@ -24,7 +24,7 @@ public class ExamQuestion {
     @Id
     @Column(name = "question_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer questionId;
+    private Long questionId;
 
     @ManyToOne
     @JoinColumn (name = "exam_code", referencedColumnName = "exam_code")

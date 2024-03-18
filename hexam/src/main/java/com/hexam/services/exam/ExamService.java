@@ -8,5 +8,5 @@ import java.util.List;
  * @author trhiep
  */
 public interface ExamService {
-    List<Exam> findExamsByPersonPersonId(Integer personId);
+    List<Exam> findExamsByPersonPersonId(Long personId);
 }

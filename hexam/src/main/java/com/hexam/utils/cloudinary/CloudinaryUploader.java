@@ -3,6 +3,7 @@ package com.hexam.utils.cloudinary;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import io.github.cdimascio.dotenv.Dotenv;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.UUID;
  */
 public class CloudinaryUploader {
 
-    public static String uploadImage(String imageLink) {
+    public static String uploadImage(MultipartFile file) {
         Dotenv dotenv = Dotenv.load();
         Cloudinary cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
         cloudinary.config.secure = true;
@@ -28,7 +29,7 @@ public class CloudinaryUploader {
 
         Map uploadResult;
         try {
-            uploadResult = cloudinary.uploader().upload(imageLink, uploadParam);
+            uploadResult = cloudinary.uploader().upload(file.getBytes(), uploadParam);
         } catch (IOException e) {
             System.out.println("Failed to upload!");
             return null;
