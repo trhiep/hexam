@@ -33,6 +33,47 @@
                     <a th:href="@{bai-thi/tao-bai-thi}" class="btn btn-primary">Tạo bài thi</a>
                 </div>
             </div>
+
+            <div th:if="${!exams.isEmpty()}">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a th:href="@{bai-thi/tao-bai-thi}" class="btn btn-primary">Tạo bài thi</a>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="col-md-12 content">
+                        <div class="row gy-3">
+                            <div class="col-md-3" th:each="exam : ${exams}">
+                                <div class="card" style="width: 100%">
+                                    <img class="card-img-top default-exam-img" th:src="${exam.getImageLink()}" alt="Exam image">
+                                    <div class="card-body">
+                                        <a th:href="@{#}"><h5 class="card-title text-center nav-link default-exam-name" th:text="${exam.getExamName()}"></h5></a>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" th:switch="${exam.getPublication()}">
+                                            <span th:case="1">
+                                                <i class="bi bi-globe2"></i> Công khai
+                                            </span>
+                                            <span th:case="2">
+                                                <i class="fa-solid fa-chalkboard-user"></i> Không công khai
+                                            </span>
+                                            <span th:case="3">
+                                                <i class="fa-solid fa-lock"></i> Riêng tư
+                                            </span>
+                                        </li>
+                                        <li class="list-group-item"><i class="bi bi-calendar"></i> 18-03-2024 12:00 <i class="bi bi-arrow-right"></i> 25-03-2024 23:59</li>
+                                        <li class="list-group-item"><i class="bi bi-stopwatch"></i> <span  th:text="' ' + ${exam.getDuration()} + ' phút'"></span></li>
+                                    </ul>
+                                    <div class="card-body text-center">
+                                        <a href="#" class="btn btn-primary">Xem chi tiết</a>
+                                        <a href="#" class="btn btn-outline-primary">Thêm vào lớp</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <input type="hidden" id="toastMessage" th:value="${toastMessage}">
         <div th:replace="~{fragments/guest/toast}"></div>

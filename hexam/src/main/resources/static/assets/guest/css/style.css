@@ -204,3 +204,14 @@
 .span-warning {
     color: red;
 }
+
+.default-exam-img {
+    height: 250px;
+}
+
+.default-exam-name {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

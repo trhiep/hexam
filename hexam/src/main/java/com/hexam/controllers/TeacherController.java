@@ -10,6 +10,7 @@ import com.hexam.repositories.PersonRepository;
 import com.hexam.services.classes.ClassServiceImpl;
 import com.hexam.services.classes.ClassTeacherService;
 import com.hexam.services.exam.ExamService;
+import com.hexam.services.exam.ExamSettingsServiceImpl;
 import com.hexam.services.teacher.TeacherService;
 import com.hexam.utils.cloudinary.CloudinaryUploader;
 import com.hexam.utils.generator.CodeGenerator;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -132,15 +134,20 @@ public class TeacherController {
     ExamService examService;
     @Autowired
     ExamRepository examRepository;
-
     @Autowired
     ExamSettingsRepository examSettingsRepository;
+    @Autowired
+    ExamSettingsServiceImpl examSettingsService;
     @RequestMapping("/bai-thi")
     public String myExam(Model model) {
         getUserDetailsInf(model);
         Person person = (Person) model.getAttribute("person");
         if (person != null) {
-            List<Exam> exams = examService.findExamsByPersonPersonId(person.getPersonId());
+            List<Exam> examsOfPerson = examRepository.findExamsByPersonPersonId(person.getPersonId());
+            List<ExamSettings> exams = new ArrayList<>();
+            for (Exam examOfPerson : examsOfPerson) {
+                exams.add(examSettingsService.getExamSettingsByExamExamCode(examOfPerson.getExamCode()));
+            }
             model.addAttribute("exams", exams);
         }
         model.addAttribute("toastMessage", (String) model.getAttribute("toastMessage"));
