@@ -1,6 +1,9 @@
 package com.hexam.controllers;
 
 import com.hexam.config.CustomUserDetails;
+import com.hexam.constants.EntityConstants;
+import com.hexam.constants.WebErrorMessage;
+import com.hexam.constants.WebSuccessMessage;
 import com.hexam.dtos.ClassTeacherDTO;
 import com.hexam.models.*;
 import com.hexam.repositories.ClassTeacherRepository;
@@ -12,9 +15,12 @@ import com.hexam.services.classes.ClassTeacherService;
 import com.hexam.services.exam.ExamService;
 import com.hexam.services.exam.ExamSettingsServiceImpl;
 import com.hexam.services.teacher.TeacherService;
-import com.hexam.utils.cloudinary.CloudinaryUploader;
+import com.hexam.utils.formatter.DoubleFormatter;
+import com.hexam.utils.formatter.IntegerFormatter;
+import com.hexam.utils.formatter.LocalDateTimeFormatter;
 import com.hexam.utils.generator.CodeGenerator;
 import com.hexam.utils.loader.SecurityInformationLoader;
+import com.hexam.validator.ExamValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +28,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,8 +139,6 @@ public class TeacherController {
     @Autowired
     ExamRepository examRepository;
     @Autowired
-    ExamSettingsRepository examSettingsRepository;
-    @Autowired
     ExamSettingsServiceImpl examSettingsService;
     @RequestMapping("/bai-thi")
     public String myExam(Model model) {
@@ -162,38 +163,70 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/bai-thi/tao-bai-thi", method = RequestMethod.POST)
-    public String createExamPost(@RequestParam("imgFile") MultipartFile image, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
+    public String createExamPost(HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
         getUserDetailsInf(model);
         Person person = (Person) model.getAttribute("person");
 
-        String examCode = CodeGenerator.generateRandomString(8);
-        Exam newExam = Exam.builder()
-                .examCode(examCode)
-                .person(person)
-                .build();
-        examRepository.save(newExam);
-
         String examName = request.getParameter("examName");
-        String imageLink = CloudinaryUploader.uploadImage(image);
-        String description = request.getParameter("examDescription");
-        String startDate = request.getParameter("examStartDate");
-        String endDate = request.getParameter("examEndDate");
-        String duration = request.getParameter("examDuration");
-        String publication = request.getParameter("examPublication");
-        String attempts = request.getParameter("examAttempts");
+        boolean isValidExamName = ExamValidator.isValidExamName(examName, model);
 
-        ExamSettings newExamSettings = ExamSettings.builder()
-                .exam(newExam)
-                .examName(examName)
-                .imageLink(imageLink)
-                .examDescription(description)
-                .publication(1)
-                .duration(60)
-                .passScore(50.0)
-                .startDate(LocalDateTime.now())
-                .build();
-        examSettingsRepository.save(newExamSettings);
-        redirectAttributes.addFlashAttribute("toastMessage", "Hello");
+        String startDate = request.getParameter("examStartDate");
+        boolean isValidExamStartDate = ExamValidator.isValidExamStartDate(startDate, model);
+
+        String endDate = request.getParameter("examEndDate");
+        boolean isValidExamEndDate = true;
+        if (!endDate.isEmpty() && isValidExamStartDate) {
+            isValidExamEndDate = ExamValidator.isValidExamEndDate(endDate, LocalDateTimeFormatter.getValidLocalDateTime(startDate), model);
+        }
+
+        String duration = request.getParameter("examDuration");
+        boolean isValidExamDuration = ExamValidator.isValidExamDuration(duration, model);
+
+        String publication = request.getParameter("examPublication");
+        boolean isValidPublication = ExamValidator.isValidExamPublication(publication, model);
+
+        String attempts = request.getParameter("examAttempts");
+        boolean isValidExamAttempt = true;
+        if(!attempts.isEmpty()) {
+            isValidExamAttempt = ExamValidator.isValidExamAttempts(attempts, model);
+        }
+
+        String passScore = request.getParameter("examPassScore");
+        boolean isValidExamPassScore = ExamValidator.isValidExamPassScore(passScore, model);
+
+        if (isValidExamName
+                && isValidExamStartDate
+                && isValidExamEndDate
+                && isValidExamDuration
+                && isValidPublication
+                && isValidExamAttempt
+                && isValidExamPassScore) {
+            String examCode = CodeGenerator.generateRandomString(EntityConstants.Exam.EXAM_CODE_GENERATED_LENGTH);
+            Exam newExam = Exam.builder()
+                    .examCode(examCode)
+                    .person(person)
+                    .build();
+            ExamSettings newExamSettings = ExamSettings.builder()
+                    .exam(newExam)
+                    .examName(examName)
+                    .publication(IntegerFormatter.getIntegerFromString(publication))
+                    .duration(IntegerFormatter.getIntegerFromString(duration))
+                    .passScore(DoubleFormatter.getDoubleFromString(passScore))
+                    .startDate(LocalDateTimeFormatter.getValidLocalDateTime(startDate))
+                    .endDate(LocalDateTimeFormatter.getValidLocalDateTime(endDate))
+                    .attempts(IntegerFormatter.getIntegerFromString(attempts))
+                    .build();
+
+            boolean isSaveSuccessfully = examSettingsService.saveExamAndExamSettings(newExam, newExamSettings);
+
+            if (isSaveSuccessfully) {
+                redirectAttributes.addFlashAttribute("toastMessage", WebSuccessMessage.Exam.SAVE_EXAM_SUCCESSFULLY);
+            } else {
+                redirectAttributes.addFlashAttribute("toastMessage", WebErrorMessage.ExamError.SAVE_EXAM_FAILED);
+            }
+        } else {
+            return "pages/teacher/create-exam";
+        }
         return "redirect:/giao-vien/bai-thi";
     }
 }

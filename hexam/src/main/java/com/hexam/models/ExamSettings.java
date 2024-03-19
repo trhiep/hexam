@@ -1,5 +1,6 @@
 package com.hexam.models;
 
+import com.hexam.constants.EntityConstants;
 import com.hexam.constants.EntityErrorMessage;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -67,6 +68,7 @@ public class ExamSettings {
 
     @PrePersist
     public void prePersist() {
+        imageLink = EntityConstants.Exam.DEFAULT_EXAM_IMAGE;
         lastModifiedDate = LocalDateTime.now();
     }
 
