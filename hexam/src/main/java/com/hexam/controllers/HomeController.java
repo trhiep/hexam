@@ -46,6 +46,9 @@ public class HomeController {
                 if (authority.getAuthority().equals("ROLE_TEACH")) {
                     return "redirect:/giao-vien/";
                 }
+                if (authority.getAuthority().equals("ROLE_STUDN")) {
+                    return "redirect:/hoc-sinh/";
+                }
             }
         }
 

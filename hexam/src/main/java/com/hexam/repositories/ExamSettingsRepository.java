@@ -17,4 +17,7 @@ public interface ExamSettingsRepository extends JpaRepository<ExamSettings, Long
     List<ExamSettings> getExamSettingsByPublicationAndEndDateAfter(Integer publication, LocalDateTime endDate);
 
     Optional<ExamSettings> findExamSettingsByExam(Exam exam);
+
+    ExamSettings findExamSettingsByExamExamCodeAndExamPersonPersonId(String examCode, Long personId);
+    ExamSettings findExamSettingsByExamExamCode(String examCode);
 }

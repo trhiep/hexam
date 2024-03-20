@@ -18,9 +18,19 @@ public class LocalDateTimeFormatter {
         return null;
     }
 
+    public static String getFormattedLocalDateTimeString(LocalDateTime inputtedValue) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        try {
+            return inputtedValue.format(formatter);
+        } catch (Exception e) {
+            System.out.println(inputtedValue);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        String date = "32-02-2024 12:00";
-        LocalDateTime result = getValidLocalDateTime(date);
+        LocalDateTime test = LocalDateTime.now();
+        String result = getFormattedLocalDateTimeString(test);
         System.out.println(result);
     }
 }

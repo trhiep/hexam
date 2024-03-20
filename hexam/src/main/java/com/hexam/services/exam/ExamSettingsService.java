@@ -11,8 +11,8 @@ import java.util.List;
  */
 public interface ExamSettingsService {
     ExamSettings getExamSettingsByExamExamCode(String examCode);
-
     List<ExamSettings> getExamSettingsByPublicationAndEndDateAfter(Integer publication, LocalDateTime endDate);
-
     boolean saveExamAndExamSettings(Exam exam, ExamSettings examSettings);
+    ExamSettings findExamSettingsByExamExamCodeAndExamPersonPersonId(String examCode, Long personId);
+    ExamSettings findExamSettingsByExamExamCode(String examCode);
 }

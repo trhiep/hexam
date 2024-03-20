@@ -47,4 +47,15 @@ public class ExamSettingsServiceImpl implements ExamSettingsService{
         }
         return false;
     }
+
+    @Override
+    public ExamSettings findExamSettingsByExamExamCodeAndExamPersonPersonId(String examCode, Long personId) {
+        return examSettingsRepository.findExamSettingsByExamExamCodeAndExamPersonPersonId(examCode, personId);
+    }
+
+    @Override
+    public ExamSettings findExamSettingsByExamExamCode(String examCode) {
+        return examSettingsRepository.findExamSettingsByExamExamCode(examCode);
+    }
+
 }

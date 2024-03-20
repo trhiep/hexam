@@ -2,6 +2,7 @@ package com.hexam.models;
 
 import com.hexam.constants.EntityConstants;
 import com.hexam.constants.EntityErrorMessage;
+import com.hexam.utils.formatter.LocalDateTimeFormatter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -75,5 +76,14 @@ public class ExamSettings {
     @PreUpdate
     public void preUpdate() {
         lastModifiedDate = LocalDateTime.now();
+    }
+
+    // Custom Getter
+    public String getFormattedStartDate() {
+        return LocalDateTimeFormatter.getFormattedLocalDateTimeString(this.startDate);
+    }
+
+    public String getFormattedEndDate() {
+        return LocalDateTimeFormatter.getFormattedLocalDateTimeString(this.endDate);
     }
 }

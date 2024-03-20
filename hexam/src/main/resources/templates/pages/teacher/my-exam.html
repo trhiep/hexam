@@ -48,7 +48,7 @@
                                     <img class="card-img-top default-exam-img" th:if="${exam.getImageLink() != null}" th:src="${exam.getImageLink()}" alt="Exam image">
                                     <img class="card-img-top default-exam-img" th:if="${exam.getImageLink() == null}" th:src="@{/assets/guest/img/default-exam-image.jpg}" alt="Exam image">
                                     <div class="card-body">
-                                        <a th:href="@{#}"><h5 class="card-title text-center nav-link default-exam-name" th:text="${exam.getExamName()}"></h5></a>
+                                        <a th:href="@{bai-thi/xem-chi-tiet/{examCode}(examCode=${exam.getExam().getExamCode()})}"><h5 class="card-title text-center nav-link default-exam-name" th:text="${exam.getExamName()}"></h5></a>
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item" th:switch="${exam.getPublication()}">
@@ -62,7 +62,12 @@
                                                 <i class="fa-solid fa-lock"></i> Riêng tư
                                             </span>
                                         </li>
-                                        <li class="list-group-item"><i class="bi bi-calendar"></i> 18-03-2024 12:00 <i class="bi bi-arrow-right"></i> 25-03-2024 23:59</li>
+                                        <li th:if="${exam.getFormattedEndDate() != null}" class="list-group-item"><i class="bi bi-calendar"></i> <span th:text="${exam.getFormattedStartDate()}"></span>
+                                            <i class="bi bi-arrow-right"></i>
+                                            <span th:text="${exam.getFormattedEndDate()}"></span></li>
+                                        <li th:if="${exam.getFormattedEndDate() == null}" class="list-group-item"><i class="bi bi-calendar"></i> <span th:text="${exam.getFormattedStartDate()}"></span>
+                                            <i class="bi bi-arrow-right"></i>
+                                            <span>Vô hạn</span></li>
                                         <li class="list-group-item"><i class="bi bi-stopwatch"></i> <span  th:text="' ' + ${exam.getDuration()} + ' phút'"></span></li>
                                     </ul>
                                     <div class="card-body text-center">

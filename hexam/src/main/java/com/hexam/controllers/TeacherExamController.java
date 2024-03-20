@@ -9,7 +9,6 @@ import com.hexam.models.ExamSettings;
 import com.hexam.models.Person;
 import com.hexam.repositories.ExamRepository;
 import com.hexam.repositories.PersonRepository;
-import com.hexam.services.exam.ExamService;
 import com.hexam.services.exam.ExamSettingsServiceImpl;
 import com.hexam.utils.formatter.DoubleFormatter;
 import com.hexam.utils.formatter.IntegerFormatter;
@@ -21,9 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -35,8 +32,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/giao-vien/bai-thi")
 public class TeacherExamController {
-    @Autowired
-    ExamService examService;
     @Autowired
     ExamRepository examRepository;
     @Autowired
@@ -63,17 +58,17 @@ public class TeacherExamController {
             }
             model.addAttribute("exams", exams);
         }
-        model.addAttribute("toastMessage", (String) model.getAttribute("toastMessage"));
+        model.addAttribute("toastMessage", model.getAttribute("toastMessage"));
         return "pages/teacher/my-exam";
     }
 
-    @RequestMapping(value = "/tao-bai-thi", method = RequestMethod.GET)
+    @GetMapping(value = "/tao-bai-thi")
     public String createExamGet(Model model) {
         getUserDetailsInf(model);
         return "pages/teacher/create-exam";
     }
 
-    @RequestMapping(value = "/tao-bai-thi", method = RequestMethod.POST)
+    @PostMapping(value = "/tao-bai-thi")
     public String createExamPost(HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
         getUserDetailsInf(model);
         Person person = (Person) model.getAttribute("person");
