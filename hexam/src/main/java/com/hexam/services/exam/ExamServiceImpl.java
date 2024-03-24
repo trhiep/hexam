@@ -1,7 +1,7 @@
 package com.hexam.services.exam;
 
 import com.hexam.models.Exam;
-import com.hexam.repositories.ExamRepository;
+import com.hexam.repositories.exam.ExamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

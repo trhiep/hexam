@@ -1,4 +1,4 @@
-package com.hexam.dtos;
+package com.hexam.dtos.teacher;
 
 import lombok.Builder;
 import lombok.Data;

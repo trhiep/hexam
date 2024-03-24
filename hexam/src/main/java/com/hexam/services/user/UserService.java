@@ -1,6 +1,6 @@
 package com.hexam.services.user;
 
-import com.hexam.dtos.TeacherDTO;
+import com.hexam.dtos.teacher.TeacherDTO;
 import com.hexam.models.Person;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.hexam.controllers;
+package com.hexam.controllers.teacher;
 
 import com.hexam.config.CustomUserDetails;
 import com.hexam.constants.EntityConstants;
@@ -7,8 +7,8 @@ import com.hexam.constants.WebSuccessMessage;
 import com.hexam.models.Exam;
 import com.hexam.models.ExamSettings;
 import com.hexam.models.Person;
-import com.hexam.repositories.ExamRepository;
-import com.hexam.repositories.PersonRepository;
+import com.hexam.repositories.exam.ExamRepository;
+import com.hexam.repositories.person.PersonRepository;
 import com.hexam.services.exam.ExamSettingsServiceImpl;
 import com.hexam.utils.formatter.DoubleFormatter;
 import com.hexam.utils.formatter.IntegerFormatter;

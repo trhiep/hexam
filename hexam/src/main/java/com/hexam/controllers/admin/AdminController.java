@@ -1,8 +1,9 @@
-package com.hexam.controllers;
+package com.hexam.controllers.admin;
 
 import com.hexam.config.CustomUserDetails;
-import com.hexam.models.Person;
-import com.hexam.repositories.PersonRepository;
+import com.hexam.dtos.teacher.TeacherDTO;
+import com.hexam.repositories.person.PersonRepository;
+import com.hexam.services.user.UserServiceImpl;
 import com.hexam.utils.loader.SecurityInformationLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,15 +11,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 /**
  * @author trhiep
  */
 @Controller
-@RequestMapping("/hoc-sinh/")
-public class StudentController {
+@RequestMapping("/admin")
+public class AdminController {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    UserServiceImpl userService;
 
     private void getUserDetailsInf(Model model) {
         CustomUserDetails customUserDetails = SecurityInformationLoader.getCustomUserDetails();
@@ -28,12 +34,22 @@ public class StudentController {
     }
 
     @GetMapping
-    public String index(Model model) {
-        getUserDetailsInf(model);
-        Person person = (Person) model.getAttribute("person");
-        if (person != null) {
-            model.addAttribute("person", person);
-        }
-        return "pages/student/index";
+    public String index() {
+        return "redirect:/admin/";
     }
+
+    @RequestMapping("/")
+    public String admin(Model model) {
+        getUserDetailsInf(model);
+        return "pages/admin/index";
+    }
+
+    @RequestMapping("/quan-ly-giao-vien")
+    public String getTeacherList(Model model) {
+        List<TeacherDTO> teachers = userService.findAllTeacher();
+        model.addAttribute("teachers", teachers);
+        getUserDetailsInf(model);
+        return "pages/admin/person-mng/teacher/teacher-list";
+    }
+
 }

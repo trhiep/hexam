@@ -1,8 +1,7 @@
 package com.hexam.services.teacher;
 
-import com.hexam.dtos.ClassTeacherDTO;
-import com.hexam.dtos.TeacherDTO;
-import com.hexam.repositories.ClassRepository;
+import com.hexam.dtos.teacher.ClassTeacherDTO;
+import com.hexam.repositories.teacher.ClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

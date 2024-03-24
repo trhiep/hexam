@@ -1,11 +1,11 @@
-package com.hexam.controllers;
+package com.hexam.controllers.authentication;
 
 import com.hexam.constants.EntityConstants;
 import com.hexam.constants.ProgramRegex;
 import com.hexam.constants.WebErrorMessage;
 import com.hexam.models.Person;
 import com.hexam.models.UserRole;
-import com.hexam.repositories.PersonRepository;
+import com.hexam.repositories.person.PersonRepository;
 import com.hexam.services.user.UserServiceImpl;
 import com.hexam.utils.validator.RegexValidator;
 import jakarta.servlet.http.HttpServletRequest;

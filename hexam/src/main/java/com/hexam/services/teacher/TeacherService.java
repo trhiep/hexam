@@ -1,6 +1,6 @@
 package com.hexam.services.teacher;
 
-import com.hexam.dtos.ClassTeacherDTO;
+import com.hexam.dtos.teacher.ClassTeacherDTO;
 
 import java.util.List;
 

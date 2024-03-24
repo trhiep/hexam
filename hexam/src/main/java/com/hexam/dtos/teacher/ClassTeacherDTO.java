@@ -1,4 +1,4 @@
-package com.hexam.dtos;
+package com.hexam.dtos.teacher;
 
 import com.hexam.constants.EntityErrorMessage;
 import com.hexam.models.Classes;

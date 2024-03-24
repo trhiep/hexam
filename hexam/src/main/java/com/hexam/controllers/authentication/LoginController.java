@@ -1,4 +1,4 @@
-package com.hexam.controllers;
+package com.hexam.controllers.authentication;
 
 import com.hexam.constants.WebErrorMessage;
 import jakarta.servlet.http.HttpServletRequest;

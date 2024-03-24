@@ -1,12 +1,12 @@
-package com.hexam.controllers;
+package com.hexam.controllers.teacher;
 
 import com.hexam.config.CustomUserDetails;
-import com.hexam.dtos.ClassTeacherDTO;
+import com.hexam.dtos.teacher.ClassTeacherDTO;
 import com.hexam.models.ClassTeacher;
 import com.hexam.models.Classes;
 import com.hexam.models.Person;
-import com.hexam.repositories.ClassTeacherRepository;
-import com.hexam.repositories.PersonRepository;
+import com.hexam.repositories.teacher.ClassTeacherRepository;
+import com.hexam.repositories.person.PersonRepository;
 import com.hexam.services.classes.ClassServiceImpl;
 import com.hexam.services.classes.ClassTeacherService;
 import com.hexam.services.teacher.TeacherService;

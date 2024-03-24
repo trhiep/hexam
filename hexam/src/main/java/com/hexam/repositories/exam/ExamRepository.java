@@ -1,4 +1,4 @@
-package com.hexam.repositories;
+package com.hexam.repositories.exam;
 
 import com.hexam.models.Exam;
 import org.springframework.data.jpa.repository.JpaRepository;

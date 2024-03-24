@@ -1,6 +1,6 @@
-package com.hexam.repositories;
+package com.hexam.repositories.person;
 
-import com.hexam.dtos.TeacherDTO;
+import com.hexam.dtos.teacher.TeacherDTO;
 import com.hexam.models.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

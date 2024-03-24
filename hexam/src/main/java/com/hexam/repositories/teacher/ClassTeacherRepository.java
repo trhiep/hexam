@@ -1,4 +1,4 @@
-package com.hexam.repositories;
+package com.hexam.repositories.teacher;
 
 import com.hexam.models.ClassTeacher;
 import com.hexam.models.IdClass.ClassTeacherId;
