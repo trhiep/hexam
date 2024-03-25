@@ -1,5 +1,6 @@
 package com.hexam.models;
 
+import com.hexam.models.IdClass.ClassEnrollmentId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Table(name = "class_enrollment")
+@IdClass(ClassEnrollmentId.class)
 public class ClassEnrollment {
 
     @Id

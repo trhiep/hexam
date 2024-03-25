@@ -16,7 +16,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     Person findByEmailAddress(String email);
 
     @Query(value = """
-            SELECT new com.hexam.dtos.TeacherDTO
+            SELECT new com.hexam.dtos.teacher.TeacherDTO
             (
                 p.personId,
                 p.profileImage,

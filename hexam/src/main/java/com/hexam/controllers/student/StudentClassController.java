@@ -1,9 +1,11 @@
 package com.hexam.controllers.student;
 
 import com.hexam.config.CustomUserDetails;
+import com.hexam.dtos.student.ClassStudentDTO;
 import com.hexam.dtos.teacher.ClassTeacherDTO;
 import com.hexam.models.Person;
 import com.hexam.repositories.person.PersonRepository;
+import com.hexam.services.student.StudentService;
 import com.hexam.services.teacher.TeacherService;
 import com.hexam.utils.loader.SecurityInformationLoader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +19,13 @@ import java.util.List;
  * @author trhiep
  */
 @Controller
-@RequestMapping("/hoc-sinh/lop-hoc")
+@RequestMapping("/hoc-sinh")
 public class StudentClassController {
 
     @Autowired
     PersonRepository personRepository;
     @Autowired
-    TeacherService teacherService;
+    StudentService studentService;
 
 
     private void getUserDetailsInf(Model model) {
@@ -39,10 +41,10 @@ public class StudentClassController {
         model.addAttribute("pageTitle", "Lớp học của tôi");
         Person person = (Person) model.getAttribute("person");
         if (person != null) {
-            List<ClassTeacherDTO> classesOfTeacher = teacherService.findClassesForTeacherByPersonId(person.getPersonId());
-            model.addAttribute("classList", classesOfTeacher);
+            List<ClassStudentDTO> classesOfStudent = studentService.findClassesForStudentByPersonId(person.getPersonId());
+            model.addAttribute("classList", classesOfStudent);
         }
         model.addAttribute("toastMessage", (String) model.getAttribute("toastMessage"));
-        return "pages/teacher/my-class";
+        return "pages/student/my-class";
     }
 }

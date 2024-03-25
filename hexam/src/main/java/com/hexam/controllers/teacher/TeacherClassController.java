@@ -25,7 +25,7 @@ import java.util.List;
  * @author trhiep
  */
 @Controller
-@RequestMapping("/giao-vien/lop-hoc")
+@RequestMapping("/giao-vien")
 public class TeacherClassController {
 
     @Autowired
