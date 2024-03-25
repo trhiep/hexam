@@ -3,11 +3,13 @@ package com.hexam.controllers.classes;
 import com.hexam.config.CustomUserDetails;
 import com.hexam.dtos.student.ClassStudentDTO;
 import com.hexam.models.ClassEnrollment;
+import com.hexam.models.ClassTeacher;
 import com.hexam.models.Classes;
 import com.hexam.models.Person;
 import com.hexam.repositories.person.PersonRepository;
 import com.hexam.services.classes.ClassServiceImpl;
 import com.hexam.services.classes.ClassStudentServiceImpl;
+import com.hexam.services.classes.ClassTeacherServiceImpl;
 import com.hexam.services.student.StudentServiceImpl;
 import com.hexam.utils.loader.SecurityInformationLoader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,8 @@ public class ClassController {
     PersonRepository personRepository;
     @Autowired
     ClassStudentServiceImpl classStudentService;
+    @Autowired
+    ClassTeacherServiceImpl classTeacherService;
 
     private void getUserDetailsInf(Model model) {
         CustomUserDetails customUserDetails = SecurityInformationLoader.getCustomUserDetails();
@@ -46,8 +50,14 @@ public class ClassController {
         getUserDetailsInf(model);
         Person person = (Person) model.getAttribute("person");
         if (person != null) {
-            ClassEnrollment classEnrollment = classStudentService.findClassEnrollmentByPersonPersonIdAndClassesJoinCode(person.getPersonId(), joinCode);
-            if (classEnrollment == null) {
+            ClassEnrollment classOfStudent = null;
+            ClassTeacher classOfTeacher = null;
+            if (person.getUserRole().getRoleCode().equals("STUDN")) {
+                classOfStudent = classStudentService.findClassEnrollmentByPersonPersonIdAndClassesJoinCode(person.getPersonId(), joinCode);
+            } else if(person.getUserRole().getRoleCode().equals("TEACH")) {
+                classOfTeacher = classTeacherService.findClassTeacherByPersonPersonIdAndClasses_JoinCode(person.getPersonId(), joinCode);
+            }
+            if (classOfStudent == null && classOfTeacher == null) {
                 redirectAttributes.addFlashAttribute("toastMessage", "Bạn chưa tham gia lớp học này!");
                 return "redirect:/hoc-sinh/";
             } else {

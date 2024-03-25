@@ -8,7 +8,37 @@
 
     <div class="row">
         <div class="col-md-12 content">
-            <h1 th:text="${classInf.getClassName()}"></h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mt-3 mb-3">
+                        <button style="float: right" type="button" class="btn btn-primary"><i class="bi bi-gear"></i> Cài Đặt</button>
+                    </div>
+                </div>
+                <div class="row gy-3">
+                    <div class="col-md-12">
+                        <div class="card mb-3">
+                            <img class="card-img-top class-banner" th:src="@{/assets/guest/img/classroom.jpg}" alt="Class image">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${classInf.getClassName()}"></h5>
+                                <p class="card-text" th:text="${'Mã tham gia: ' + classInf.getJoinCode()}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gy-3">
+                    <div class="col-md-3" th:each="class : ${classList}">
+                        <a th:href="@{${'/lop-hoc/' + class.getJoinCode()}}">
+                            <div class="pb-5">
+                                <div class="product-item position-relative bg-light d-flex flex-column">
+                                    <img class="img-fluid mb-4" th:src="@{/assets/guest/img/classroom.jpg}"
+                                         alt="Class Image">
+                                    <h6 class="text-uppercase" th:text="${class.getClassName()}"></h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
             <input type="hidden" id="toastMessage" th:value="${toastMessage}">
             <div th:replace="~{fragments/guest/toast}"></div>
         </div>

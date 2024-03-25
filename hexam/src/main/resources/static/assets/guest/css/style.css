@@ -219,3 +219,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.class-banner {
+    max-height: 250px;
+}

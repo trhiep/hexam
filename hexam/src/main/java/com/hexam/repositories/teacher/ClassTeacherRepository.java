@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ClassTeacherRepository extends JpaRepository<ClassTeacher, ClassTeacherId> {
     ClassTeacher findClassTeacherByPersonPersonIdAndClassesClassId(Long personId, Long classId);
+    ClassTeacher findClassTeacherByPersonPersonIdAndClasses_JoinCode(Long personId, String joinCode);
 }

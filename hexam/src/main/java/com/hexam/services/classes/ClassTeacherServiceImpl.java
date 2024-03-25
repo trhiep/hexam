@@ -18,4 +18,9 @@ public class ClassTeacherServiceImpl implements ClassTeacherService{
     public ClassTeacher findClassTeacherByPersonPersonIdAndClassesClassId(Long personId, Long classId) {
         return classTeacherRepository.findClassTeacherByPersonPersonIdAndClassesClassId(personId, classId);
     }
+
+    @Override
+    public ClassTeacher findClassTeacherByPersonPersonIdAndClasses_JoinCode(Long personId, String joinCode) {
+        return classTeacherRepository.findClassTeacherByPersonPersonIdAndClasses_JoinCode(personId, joinCode);
+    }
 }

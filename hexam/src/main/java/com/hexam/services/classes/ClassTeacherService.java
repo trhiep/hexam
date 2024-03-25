@@ -9,4 +9,5 @@ import com.hexam.models.Person;
  */
 public interface ClassTeacherService {
     ClassTeacher findClassTeacherByPersonPersonIdAndClassesClassId(Long personId, Long classId);
+    ClassTeacher findClassTeacherByPersonPersonIdAndClasses_JoinCode(Long personId, String joinCode);
 }
