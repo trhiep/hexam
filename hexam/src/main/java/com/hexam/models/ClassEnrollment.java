@@ -34,12 +34,6 @@ public class ClassEnrollment {
     @Column(name = "enrolled_date")
     private LocalDateTime enrolledDate;
 
-    @Column(name = "cancelled")
-    private Boolean cancelled;
-
-    @Column(name = "cancel_reason")
-    private String cancelReason;
-
     @Column(name = "left_class")
     private Boolean leftClass;
 
