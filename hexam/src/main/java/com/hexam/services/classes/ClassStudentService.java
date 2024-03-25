@@ -7,4 +7,6 @@ import com.hexam.models.ClassEnrollment;
  */
 public interface ClassStudentService {
     ClassEnrollment findClassEnrollmentByPersonPersonIdAndClassesClassId(Long personId, Long classId);
+
+    ClassEnrollment findClassEnrollmentByPersonPersonIdAndClassesJoinCode(Long personId, String joinCode);
 }

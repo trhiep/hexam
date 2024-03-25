@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ClassStudentRepository extends JpaRepository<ClassEnrollment, ClassEnrollmentId> {
     ClassEnrollment findClassEnrollmentByPersonPersonIdAndClassesClassId(Long personId, Long classId);
+    ClassEnrollment findClassEnrollmentByPersonPersonIdAndClassesJoinCode(Long personId, String joinCode);
 }

@@ -20,7 +20,7 @@
                 <div class="col-md-12 content">
                     <div class="row gy-3">
                         <div class="col-md-3" th:each="class : ${classList}">
-                            <a th:href="@{${'/lop-hoc?code=' + class.getJoinCode()}}">
+                            <a th:href="@{${'/lop-hoc/' + class.getJoinCode()}}">
                                 <div class="pb-5">
                                     <div class="product-item position-relative bg-light d-flex flex-column">
                                         <img class="img-fluid mb-4" th:src="@{/assets/guest/img/classroom.jpg}"

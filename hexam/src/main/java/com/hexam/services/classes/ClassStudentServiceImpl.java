@@ -18,4 +18,9 @@ public class ClassStudentServiceImpl implements ClassStudentService{
     public ClassEnrollment findClassEnrollmentByPersonPersonIdAndClassesClassId(Long personId, Long classId) {
         return classStudentRepository.findClassEnrollmentByPersonPersonIdAndClassesClassId(personId, classId);
     }
+
+    @Override
+    public ClassEnrollment findClassEnrollmentByPersonPersonIdAndClassesJoinCode(Long personId, String joinCode) {
+        return classStudentRepository.findClassEnrollmentByPersonPersonIdAndClassesJoinCode(personId, joinCode);
+    }
 }
